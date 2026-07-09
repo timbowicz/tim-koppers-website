@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://timkoppers.com/sitemap.xml
