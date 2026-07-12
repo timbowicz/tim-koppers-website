@@ -64,29 +64,52 @@
       if (e.target.closest(interactive)) blob.classList.remove('is-active');
     });
 
-    /* little yellow ink splat on every click */
+    /* yellow ink splat on every click: popping ring + flying dots and stars.
+       Everything is positioned via left/top — never via transform — because the
+       scale/rotate animations would also transform a positioning translate. */
     document.addEventListener('click', function (e) {
-      for (var s = 0; s < 9; s++) {
+      var ring = document.createElement('div');
+      ring.className = 'click-ring';
+      ring.setAttribute('aria-hidden', 'true');
+      ring.style.left = (e.clientX - 22) + 'px';
+      ring.style.top = (e.clientY - 22) + 'px';
+      document.body.appendChild(ring);
+      ring.addEventListener('animationend', ring.remove.bind(ring));
+
+      for (var s = 0; s < 12; s++) {
         var spark = document.createElement('div');
-        spark.className = 'cursor-spark';
+        var isStar = s % 3 === 0;
+        spark.className = 'cursor-spark' + (isStar ? ' is-star' : '');
         spark.setAttribute('aria-hidden', 'true');
-        var angle = (Math.PI * 2 * s) / 9 + Math.random() * 0.6;
-        var dist = 28 + Math.random() * 34;
+        if (isStar) {
+          spark.textContent = '✦'; /* ✦ */
+          spark.style.setProperty('--fs', (10 + Math.random() * 8) + 'px');
+        } else {
+          var size = 5 + Math.random() * 6;
+          spark.style.width = spark.style.height = size + 'px';
+        }
+        var angle = (Math.PI * 2 * s) / 12 + Math.random() * 0.5;
+        var dist = 32 + Math.random() * 48;
         spark.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
-        spark.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
-        /* position via left/top, NOT transform — the scale animation would
-           shrink a transform-translate and pull sparks toward the viewport origin */
-        spark.style.left = (e.clientX - 4) + 'px';
-        spark.style.top = (e.clientY - 4) + 'px';
+        spark.style.setProperty('--dy', (Math.sin(angle) * dist + 14) + 'px'); /* touch of gravity */
+        spark.style.setProperty('--rot', (Math.random() * 540 - 270) + 'deg');
+        spark.style.setProperty('--t', (0.45 + Math.random() * 0.3) + 's');
+        spark.style.left = (e.clientX - 5) + 'px';
+        spark.style.top = (e.clientY - 5) + 'px';
         document.body.appendChild(spark);
         spark.addEventListener('animationend', spark.remove.bind(spark));
       }
     });
 
+    var scaleCur = 1;
     (function follow() {
       bx += (mx - bx) * 0.2;
       by += (my - by) * 0.2;
-      blob.style.transform = 'translate(' + (bx - 8) + 'px,' + (by - 8) + 'px)';
+      /* scale lives inside the same transform, after the translate, so the
+         blob grows around its own center instead of scaling its position */
+      var scaleTarget = blob.classList.contains('is-active') ? 1.25 : 1;
+      scaleCur += (scaleTarget - scaleCur) * 0.2;
+      blob.style.transform = 'translate(' + (bx - 8) + 'px,' + (by - 8) + 'px) scale(' + scaleCur.toFixed(3) + ')';
       var px = bx, py = by;
       trail.forEach(function (t) {
         t.x += (px - t.x) * 0.28;

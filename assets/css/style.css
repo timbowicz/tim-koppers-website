@@ -208,8 +208,8 @@ a { color: inherit; }
   transform: translateX(-50%);
   z-index: 2;
   margin: 0;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 19px;
+  font-weight: 700;
   line-height: 1.4;
   text-align: center;
   color: var(--ink);
@@ -219,12 +219,12 @@ a { color: inherit; }
 .card-title .marker { transition-delay: .15s; }
 .card-year {
   position: absolute;
-  top: 84px; left: 50%;
+  top: 88px; left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .14em;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .05em;
   color: var(--ink);
 }
 .card-year .marker { transition-delay: .35s; }
@@ -257,7 +257,7 @@ a { color: inherit; }
   margin: -14px 0 22px;
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: .22em;
+  letter-spacing: .1em;
   color: #a0a0a0;
 }
 .page-intro p { margin: 0 0 1em; }
@@ -431,6 +431,10 @@ a { color: inherit; }
 .js .card.reveal:nth-child(odd) { transform: translateY(48px) rotate(.8deg) scale(.985); }
 .js .card.reveal:nth-child(even) { transform: translateY(48px) rotate(-.8deg) scale(.985); }
 .js .reveal.in-view { opacity: 1; transform: none; }
+/* the nth-child rules above are more specific than .reveal.in-view, so the
+   settled state needs its own more-specific override — cards must end straight */
+.js .card.reveal:nth-child(odd).in-view,
+.js .card.reveal:nth-child(even).in-view { transform: none; }
 
 /* ---- Cursor comet (desktop only) --------------------------------------------------- */
 .cursor-blob, .cursor-trail, .cursor-spark {
@@ -445,29 +449,51 @@ a { color: inherit; }
 .cursor-blob {
   width: 16px; height: 16px;
   opacity: 0;
-  transition: opacity .3s, scale .3s var(--ease-pop);
+  transition: opacity .3s;
 }
 .cursor-blob::after {
   content: '';
-  position: absolute; inset: -3px;
+  position: absolute; inset: -4px;
   border-radius: 50%;
   border: 1.5px dashed var(--yellow);
   opacity: 0;
   transition: opacity .25s;
 }
-.cursor-blob.is-active { scale: 1.2; animation: blob-spin 6s linear infinite; }
-.cursor-blob.is-active::after { opacity: 1; animation: inherit; }
+/* Spin only the ring pseudo-element: animating rotate/scale on the blob itself
+   would also transform its positioning translate and drag it off the cursor. */
+.cursor-blob.is-active::after { opacity: 1; animation: blob-spin 5s linear infinite; }
 @keyframes blob-spin { to { rotate: 360deg; } }
 .cursor-trail { opacity: .5; }
+
+/* Click splat: dots + little stars + popping ring (positioned via left/top) */
 .cursor-spark {
-  width: 8px; height: 8px;
-  animation: spark-fly .55s var(--ease-smooth) forwards;
+  animation: spark-fly var(--t, .6s) cubic-bezier(.15, .8, .3, 1) forwards;
+}
+.cursor-spark.is-star {
+  background: none;
+  border-radius: 0;
+  color: var(--yellow);
+  font-size: var(--fs, 14px);
+  line-height: 1;
 }
 @keyframes spark-fly {
-  0% { translate: 0 0; scale: 1; opacity: .95; }
-  100% { translate: var(--dx) var(--dy); scale: .1; opacity: 0; }
+  0% { translate: 0 0; scale: 1; opacity: 1; rotate: 0deg; }
+  100% { translate: var(--dx) var(--dy); scale: .15; opacity: 0; rotate: var(--rot, 180deg); }
 }
-@media (hover: none), (pointer: coarse) { .cursor-blob, .cursor-trail, .cursor-spark { display: none; } }
+.click-ring {
+  position: fixed;
+  width: 44px; height: 44px;
+  border: 2px dashed var(--yellow);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999;
+  animation: ring-pop .5s ease-out forwards;
+}
+@keyframes ring-pop {
+  0% { scale: .25; opacity: 1; rotate: 0deg; }
+  100% { scale: 1.5; opacity: 0; rotate: 45deg; }
+}
+@media (hover: none), (pointer: coarse) { .cursor-blob, .cursor-trail, .cursor-spark, .click-ring { display: none; } }
 
 /* Card tilt: JS sets --tiltX/--tiltY on .card-media; only the image inside
    tilts (with a zoom so no edges show) — the rounded frame itself stays straight. */
@@ -497,6 +523,6 @@ a { color: inherit; }
   .video-facade:hover img { transform: none; }
   .button-pill:hover { transform: none; }
   .project-nav .arrow { transition: none; }
-  .cursor-blob, .cursor-trail, .cursor-spark { display: none; }
+  .cursor-blob, .cursor-trail, .cursor-spark, .click-ring { display: none; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
 }
