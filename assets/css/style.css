@@ -658,3 +658,56 @@ a { color: inherit; }
   .cursor-blob, .cursor-trail, .cursor-spark, .click-ring { display: none; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
 }
+
+/* ---- Post-feedback refinements (Tim 2026-07-12) --------------------------------- */
+/* keep the 2002-highlight inside its own line so it never covers the line above */
+.statement .marker {
+  padding: 0 .16em;
+  background-size: 0% 78%;
+  background-position: 0 62%;
+}
+.statement.is-inked .marker, .is-inked .statement .marker { background-size: 100% 78%; }
+
+/* content between hero and footer: clean, borderless, rounded — old style */
+.card-link { border: 0; }
+.card-media {
+  border-bottom: 0;
+  border-radius: 10px;
+}
+.card-caption {
+  padding: 12px 2px 0;
+  background: transparent;
+}
+.card-link:hover .card-caption, .card-link:focus-visible .card-caption { background: transparent; }
+.card-link:hover .card-index { background: var(--ink); color: var(--yellow); }
+.card-index { transition: background .15s linear, color .15s linear; border-radius: 3px; }
+
+.slide-media {
+  border: 0;
+  border-radius: 10px;
+}
+.slide-text {
+  max-width: 620px;
+  margin: 26px auto 0;
+  text-align: center;
+}
+@media (min-width: 900px) {
+  .slide:nth-child(even) .slide-text { margin-left: auto; }
+}
+.slide-heading { display: inline-block; }
+.slide-heading::before { display: none; }
+.slide-heading {
+  background-image: linear-gradient(var(--yellow), var(--yellow));
+  background-repeat: no-repeat;
+  background-size: 0% 9px;
+  background-position: 50% 96%;
+  padding: 0 .2em .1em;
+  transition: background-size .5s var(--ease-smooth) .15s;
+}
+.is-inked .slide-heading { background-size: 100% 9px; }
+
+.video-facade .play {
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .35);
+}
