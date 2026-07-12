@@ -404,28 +404,57 @@ a { color: inherit; }
 /* ---- Scroll reveal -------------------------------------------------------------- */
 .js .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .8s var(--ease-smooth), transform .8s var(--ease-smooth);
+  transform: translateY(44px) scale(.985);
+  transition: opacity .8s var(--ease-smooth), transform .9s var(--ease-pop);
   transition-delay: var(--d, 0s);
 }
+.js .card.reveal:nth-child(odd) { transform: translateY(48px) rotate(.8deg) scale(.985); }
+.js .card.reveal:nth-child(even) { transform: translateY(48px) rotate(-.8deg) scale(.985); }
 .js .reveal.in-view { opacity: 1; transform: none; }
 
-/* ---- Cursor blob (desktop only) --------------------------------------------------- */
-.cursor-blob {
+/* ---- Cursor comet (desktop only) --------------------------------------------------- */
+.cursor-blob, .cursor-trail, .cursor-spark {
   position: fixed;
   top: 0; left: 0;
-  width: 14px; height: 14px;
   border-radius: 50%;
   background: var(--yellow);
   mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 999;
-  opacity: 0;
-  transition: opacity .3s, scale .3s var(--ease-pop);
   will-change: transform;
 }
-.cursor-blob.is-active { scale: 3.2; }
-@media (hover: none), (pointer: coarse) { .cursor-blob { display: none; } }
+.cursor-blob {
+  width: 16px; height: 16px;
+  opacity: 0;
+  transition: opacity .3s, scale .3s var(--ease-pop);
+}
+.cursor-blob::after {
+  content: '';
+  position: absolute; inset: -7px;
+  border-radius: 50%;
+  border: 2px dashed var(--yellow);
+  opacity: 0;
+  transition: opacity .25s;
+}
+.cursor-blob.is-active { scale: 2.4; animation: blob-spin 6s linear infinite; }
+.cursor-blob.is-active::after { opacity: 1; animation: inherit; }
+@keyframes blob-spin { to { rotate: 360deg; } }
+.cursor-trail { opacity: .5; }
+.cursor-spark {
+  width: 8px; height: 8px;
+  animation: spark-fly .55s var(--ease-smooth) forwards;
+}
+@keyframes spark-fly {
+  0% { translate: 0 0; scale: 1; opacity: .95; }
+  100% { translate: var(--dx) var(--dy); scale: .1; opacity: 0; }
+}
+@media (hover: none), (pointer: coarse) { .cursor-blob, .cursor-trail, .cursor-spark { display: none; } }
+
+/* ---- Card tilt (JS sets --tiltX/--tiltY) ------------------------------------------- */
+.card-media {
+  transform: perspective(900px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
+  transition: transform .25s ease-out;
+}
 
 /* ---- View transitions (cross-document, progressive enhancement) --------------------- */
 @view-transition { navigation: auto; }
@@ -434,14 +463,24 @@ a { color: inherit; }
 ::view-transition-old(root) { animation: vt-out .28s var(--ease-smooth) both; }
 ::view-transition-new(root) { animation: vt-in .3s var(--ease-smooth) .08s both; }
 
-/* ---- Reduced motion --------------------------------------------------------------- */
+/* ---- Reduced motion: gentle mode -------------------------------------------------
+   Not everything off — soft opacity fades and the marker ink sweeps stay
+   (no positional movement), parallax/tilt/cursor/wobble/transitions go. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .js .reveal { opacity: 1; transform: none; }
-  .marker, .underline-sweep { background-size: 100% 100%; }
-  .underline-sweep { background-size: 100% 10px; }
-  .logo-underline { stroke-dashoffset: 0; }
-  .cursor-blob { display: none; }
+  .js .reveal, .js .card.reveal:nth-child(odd), .js .card.reveal:nth-child(even) {
+    transform: none;
+    transition: opacity 1s ease;
+  }
+  .marker { transition-duration: 1.1s; }
+  .underline-sweep { transition-duration: 1s; }
+  .logo-underline { animation-duration: 1.4s; }
+  .logo-sparkle, .logo-link:hover .logo,
+  .card-link:hover .card-title, .site-footer:hover .footer-spark { animation: none !important; }
+  .card-media { transform: none !important; }
+  .card-link:hover .card-media img, .video-facade:hover img { transform: none; }
+  .button-pill:hover { transform: none; }
+  .project-nav .arrow { transition: none; }
+  .cursor-blob, .cursor-trail, .cursor-spark { display: none; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
 }
