@@ -1,6 +1,7 @@
-/* timkoppers.com — Swiss edition. Progressive enhancement only:
-   the site works fully without JS. Motion is mechanical and quick,
-   and prefers-reduced-motion switches to opacity-only. */
+/* timkoppers.com — progressive enhancement layer
+   Everything here is optional: the site works fully without JS.
+   With prefers-reduced-motion the CSS switches to gentle fades;
+   parallax, tilt and the cursor comet stay off entirely. */
 (function () {
   'use strict';
 
@@ -9,7 +10,7 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  /* ---- Scroll reveal + red rule ink ---------------------------------- */
+  /* ---- Scroll reveal + marker ink ---------------------------------- */
   var revealables = document.querySelectorAll('.reveal, .ink-on-scroll');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -19,62 +20,144 @@
           io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
     revealables.forEach(function (el) { io.observe(el); });
   } else {
     revealables.forEach(function (el) { el.classList.add('in-view', 'is-inked'); });
   }
 
-  /* ---- Cursor: red square, rotates 45deg over links, stamps a cross on click */
+  /* ---- Cursor comet: blob + trail + click sparks ---------------------- */
   if (finePointer && !reduceMotion) {
-    var square = document.createElement('div');
-    square.className = 'cursor-square';
-    square.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(square);
+    var TRAIL = 6;
+    var blob = document.createElement('div');
+    blob.className = 'cursor-blob';
+    blob.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(blob);
 
-    var mx = -100, my = -100, sx = -100, sy = -100, visible = false;
-    var rotCur = 0;
+    var trail = [];
+    for (var i = 0; i < TRAIL; i++) {
+      var d = document.createElement('div');
+      d.className = 'cursor-trail';
+      d.setAttribute('aria-hidden', 'true');
+      var size = 11 - i * 1.4;
+      d.style.width = d.style.height = size + 'px';
+      d.style.opacity = (0.42 - i * 0.06).toFixed(2);
+      document.body.appendChild(d);
+      trail.push({ el: d, x: -100, y: -100, r: size / 2 });
+    }
+
+    var mx = -100, my = -100, bx = -100, by = -100, visible = false;
 
     document.addEventListener('mousemove', function (e) {
       mx = e.clientX; my = e.clientY;
-      if (!visible) { square.style.opacity = '1'; visible = true; }
+      if (!visible) { blob.style.opacity = '1'; visible = true; }
     });
     document.addEventListener('mouseleave', function () {
-      square.style.opacity = '0'; visible = false;
+      blob.style.opacity = '0'; visible = false;
     });
 
     var interactive = 'a, button, [role="button"]';
-    var active = false;
     document.addEventListener('mouseover', function (e) {
-      if (e.target.closest(interactive)) active = true;
+      if (e.target.closest(interactive)) blob.classList.add('is-active');
     });
     document.addEventListener('mouseout', function (e) {
-      if (e.target.closest(interactive)) active = false;
+      if (e.target.closest(interactive)) blob.classList.remove('is-active');
     });
 
+    /* yellow ink splat on every click: popping ring + flying dots and stars.
+       Everything is positioned via left/top — never via transform — because the
+       scale/rotate animations would also transform a positioning translate. */
     document.addEventListener('click', function (e) {
-      var cross = document.createElement('div');
-      cross.className = 'click-cross';
-      cross.setAttribute('aria-hidden', 'true');
-      cross.style.left = (e.clientX - 14) + 'px';
-      cross.style.top = (e.clientY - 14) + 'px';
-      document.body.appendChild(cross);
-      cross.addEventListener('animationend', cross.remove.bind(cross));
+      var ring = document.createElement('div');
+      ring.className = 'click-ring';
+      ring.setAttribute('aria-hidden', 'true');
+      ring.style.left = (e.clientX - 22) + 'px';
+      ring.style.top = (e.clientY - 22) + 'px';
+      document.body.appendChild(ring);
+      ring.addEventListener('animationend', ring.remove.bind(ring));
+
+      for (var s = 0; s < 12; s++) {
+        var spark = document.createElement('div');
+        var isStar = s % 3 === 0;
+        spark.className = 'cursor-spark' + (isStar ? ' is-star' : '');
+        spark.setAttribute('aria-hidden', 'true');
+        if (isStar) {
+          spark.textContent = '✦'; /* ✦ */
+          spark.style.setProperty('--fs', (10 + Math.random() * 8) + 'px');
+        } else {
+          var size = 5 + Math.random() * 6;
+          spark.style.width = spark.style.height = size + 'px';
+        }
+        var angle = (Math.PI * 2 * s) / 12 + Math.random() * 0.5;
+        var dist = 32 + Math.random() * 48;
+        spark.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+        spark.style.setProperty('--dy', (Math.sin(angle) * dist + 14) + 'px'); /* touch of gravity */
+        spark.style.setProperty('--rot', (Math.random() * 540 - 270) + 'deg');
+        spark.style.setProperty('--t', (0.45 + Math.random() * 0.3) + 's');
+        spark.style.left = (e.clientX - 5) + 'px';
+        spark.style.top = (e.clientY - 5) + 'px';
+        document.body.appendChild(spark);
+        spark.addEventListener('animationend', spark.remove.bind(spark));
+      }
     });
 
+    var scaleCur = 1;
     (function follow() {
-      sx += (mx - sx) * 0.3;
-      sy += (my - sy) * 0.3;
-      /* rotation and scale composed after the positioning translate,
-         so they act around the square's own center */
-      var rotTarget = active ? 45 : 0;
-      rotCur += (rotTarget - rotCur) * 0.25;
-      square.style.transform =
-        'translate(' + (sx - 6) + 'px,' + (sy - 6) + 'px)' +
-        ' rotate(' + rotCur.toFixed(1) + 'deg)' +
-        ' scale(' + (active ? 1.5 : 1) + ')';
+      bx += (mx - bx) * 0.2;
+      by += (my - by) * 0.2;
+      /* scale lives inside the same transform, after the translate, so the
+         blob grows around its own center instead of scaling its position */
+      var scaleTarget = blob.classList.contains('is-active') ? 1.25 : 1;
+      scaleCur += (scaleTarget - scaleCur) * 0.2;
+      blob.style.transform = 'translate(' + (bx - 8) + 'px,' + (by - 8) + 'px) scale(' + scaleCur.toFixed(3) + ')';
+      var px = bx, py = by;
+      trail.forEach(function (t) {
+        t.x += (px - t.x) * 0.28;
+        t.y += (py - t.y) * 0.28;
+        t.el.style.transform = 'translate(' + (t.x - t.r) + 'px,' + (t.y - t.r) + 'px)';
+        px = t.x; py = t.y;
+      });
       requestAnimationFrame(follow);
     })();
+  }
+
+  /* ---- Card tilt on hover ---------------------------------------------- */
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.card-link').forEach(function (link) {
+      var media = link.querySelector('.card-media');
+      if (!media) return;
+      link.addEventListener('mousemove', function (e) {
+        var r = media.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        media.style.setProperty('--tiltX', (y * -8).toFixed(2) + 'deg');
+        media.style.setProperty('--tiltY', (x * 10).toFixed(2) + 'deg');
+      });
+      link.addEventListener('mouseleave', function () {
+        media.style.setProperty('--tiltX', '0deg');
+        media.style.setProperty('--tiltY', '0deg');
+      });
+    });
+  }
+
+  /* ---- Subtle parallax on slide images -------------------------------- */
+  var pxTargets = Array.prototype.slice.call(document.querySelectorAll('.slide-media img'));
+  if (pxTargets.length && !reduceMotion && finePointer) {
+    var ticking = false;
+    var update = function () {
+      var vh = window.innerHeight;
+      pxTargets.forEach(function (img) {
+        var r = img.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        var progress = (r.top + r.height / 2 - vh / 2) / vh; // -0.5 .. 0.5
+        img.style.setProperty('translate', '0 ' + (progress * -16).toFixed(1) + 'px');
+      });
+      ticking = false;
+    };
+    window.addEventListener('scroll', function () {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
   }
 
   /* ---- Video facades: swap poster for iframe on click ------------------- */
