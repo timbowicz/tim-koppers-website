@@ -20,7 +20,6 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <a class="nav-link" href="../.">Work</a>
     <a class="logo-link" href="../." aria-label="Tim Koppers — home">
       <svg class="logo" viewBox="0 0 118 110" role="img" aria-label="koppers tim.">
   <g class="logo-sparkle" aria-hidden="true">
@@ -32,55 +31,62 @@
   <path class="logo-underline" d="M39 82h31" stroke="#fee500" stroke-width="3.4" stroke-linecap="round"/>
 </svg>
     </a>
-    <a class="nav-link" href="../hello/">Hello</a>
+    <nav aria-label="Main">
+      <a class="nav-link" href="../." data-label="Work"><span class="nav-label">Work</span></a>
+      <a class="nav-link" href="../hello/" data-label="Hello"><span class="nav-label">Hello</span></a>
+    </nav>
   </header>
 
   <main id="main">
     <article>
-      <header class="page-header reveal in-view">
-        <h1 class="page-title">Heart Valve | serious learning game</h1>
+      <header class="page-header swiss-grid-pattern reveal in-view">
+        <div>
+          <h1 class="page-title">Heart Valve<br>serious learning game</h1>
+        </div>
+        <div class="header-side">
         <p class="page-year">2018</p>
-        <div class="page-intro">
-        <p>This serious learning game was created for Edwards Lifesciences. It is aimed at general practitioners and other medical professionals, helping them improve their knowledge and skills in cardiac examination and auscultation.</p>
-        <p>The Heart Valve game is accredited for one official accreditation point: players who log in with their BIG registration number and achieve a good score automatically receive the point &mdash; a first for a serious learning game.</p>
+          <div class="page-intro">
+          <p>This serious learning game was created for Edwards Lifesciences. It is aimed at general practitioners and other medical professionals, helping them improve their knowledge and skills in cardiac examination and auscultation.</p>
+          <p>The Heart Valve game is accredited for one official accreditation point: players who log in with their BIG registration number and achieve a good score automatically receive the point &mdash; a first for a serious learning game.</p>
+          </div>
         </div>
       </header>
 
       <div class="slides">
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 2500/1908" style="view-transition-name: p-heart-valve">
+      <figure class="slide-media" style="aspect-ratio: 2500/1908; margin: 0" style="view-transition-name: p-heart-valve">
         <img src="../assets/img/heart-valve/00-iPad-Pro-2018.png" alt="iPad showing the Heart Valve game: a patient consult in a virtual practice">
       </figure>
       <div class="slide-text">
-        <h2 class="slide-heading"><span class="underline-sweep">Play different patient cases</span></h2>
+        <h2 class="slide-heading">Play different patient cases</h2>
         <p>In the Heart Valve game you work like a medical detective. In your virtual practice you receive patients for a consult: you engage in a dialogue, decide which questions are relevant and carry out physical examinations &mdash; including auscultation of the heart, with real murmur sounds the player learns to assess.</p>
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 2500/1908">
+      <figure class="slide-media" style="aspect-ratio: 2500/1908; margin: 0">
         <img src="../assets/img/heart-valve/01-iPad-Pro-2018_2.png" alt="iPad showing a patient case dialogue in the Heart Valve game" loading="lazy">
       </figure>
       <div class="slide-text">
-        <h2 class="slide-heading"><span class="underline-sweep">Developed with cardiologists</span></h2>
+        <h2 class="slide-heading">Developed with cardiologists</h2>
         <p>The game was developed in collaboration with cardiologists Dr. Ren&eacute;e van den Brink (AMC) and Dr. Janneke Wittekoek (Heartlife klinieken), who provided the patient cases and medical background.</p>
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 2500/1908">
+      <figure class="slide-media" style="aspect-ratio: 2500/1908; margin: 0">
         <img src="../assets/img/heart-valve/02-iPad-Pro-2018_3.png" alt="Heart Valve game screen with examination options" loading="lazy">
       </figure>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 2500/1908">
+      <figure class="slide-media" style="aspect-ratio: 2500/1908; margin: 0">
         <img src="../assets/img/heart-valve/03-iPad-Pro-2018_1.png" alt="Auscultation screen: placing the stethoscope on the patient’s chest" loading="lazy">
       </figure>
       <div class="slide-text">
-        <h2 class="slide-heading"><span class="underline-sweep">Listen to the heart</span></h2>
+        <h2 class="slide-heading">Listen to the heart</h2>
         <p>Perform different physical examinations and listen to the heart to hear exactly what the murmur sounds like.</p>
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 2500/2097">
+      <figure class="slide-media" style="aspect-ratio: 2500/2097; margin: 0">
         <img src="../assets/img/heart-valve/04-imac_1.png" alt="The Heart Valve game running in the browser on a desktop computer" loading="lazy">
       </figure>
     </section>
@@ -89,13 +95,16 @@
 
     <nav class="project-nav" aria-label="More work">
       <a class="prev" href="../medu-game/"><small>Previous</small><span class="arrow">&larr;</span> Medu.game</a>
-      <a class="all" href="../.">All work</a>
       <a class="next" href="../take-control-of-the-tower/"><small>Next</small>Take Control of the Tower <span class="arrow">&rarr;</span></a>
+      <a class="all" href="../.">All work</a>
     </nav>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> digital creative &mdash; <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a></p>
+    <div class="footer-inner">
+      <span>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> Digital Creative</span>
+      <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a>
+    </div>
   </footer>
 </body>
 </html>

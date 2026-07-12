@@ -20,7 +20,6 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <a class="nav-link" href="../.">Work</a>
     <a class="logo-link" href="../." aria-label="Tim Koppers — home">
       <svg class="logo" viewBox="0 0 118 110" role="img" aria-label="koppers tim.">
   <g class="logo-sparkle" aria-hidden="true">
@@ -32,16 +31,23 @@
   <path class="logo-underline" d="M39 82h31" stroke="#fee500" stroke-width="3.4" stroke-linecap="round"/>
 </svg>
     </a>
-    <a class="nav-link" href="../hello/">Hello</a>
+    <nav aria-label="Main">
+      <a class="nav-link" href="../." data-label="Work"><span class="nav-label">Work</span></a>
+      <a class="nav-link" href="../hello/" data-label="Hello"><span class="nav-label">Hello</span></a>
+    </nav>
   </header>
 
   <main id="main">
     <article>
-      <header class="page-header reveal in-view">
-        <h1 class="page-title">Madame Tussauds | interactive installation</h1>
+      <header class="page-header swiss-grid-pattern reveal in-view">
+        <div>
+          <h1 class="page-title">Madame Tussauds<br>interactive installation</h1>
+        </div>
+        <div class="header-side">
         <p class="page-year">2012</p>
-        <div class="page-intro">
-        <p>Madame Tussauds in Amsterdam faced a nice challenge: how to entertain visitors in a digital and interactive way? Together with <a href="https://www.brainstormenconcept.nl/" rel="noopener">brainstorm &amp; concept</a> we created an interactive installation where visitors star in a movie with the famous Charlie Chaplin.</p>
+          <div class="page-intro">
+          <p>Madame Tussauds in Amsterdam faced a nice challenge: how to entertain visitors in a digital and interactive way? Together with <a href="https://www.brainstormenconcept.nl/" rel="noopener">brainstorm &amp; concept</a> we created an interactive installation where visitors star in a movie with the famous Charlie Chaplin.</p>
+          </div>
         </div>
       </header>
 
@@ -57,40 +63,40 @@
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1553/1080">
+      <figure class="slide-media" style="aspect-ratio: 1553/1080; margin: 0">
         <img src="../assets/img/madame-tussauds-chaplin/01-48_charliechaplininstallation01.jpg" alt="Visitor standing on the marker doing the Chaplin walk next to Charlie Chaplin on screen" loading="lazy">
       </figure>
       <div class="slide-text">
-        <h2 class="slide-heading"><span class="underline-sweep">Do the famous walk</span></h2>
+        <h2 class="slide-heading">Do the famous walk</h2>
         <p>Stand on the marker to activate the movie. You see yourself on a big TV screen while Charlie Chaplin appears next to you &mdash; and challenges you to do his famous walk.</p>
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1119/720">
+      <figure class="slide-media" style="aspect-ratio: 1119/720; margin: 0">
         <img src="../assets/img/madame-tussauds-chaplin/02-48_charliechaplininstallation02.jpg" alt="The installation in the museum with visitors watching the screen" loading="lazy">
       </figure>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1276/718">
+      <figure class="slide-media" style="aspect-ratio: 1276/718; margin: 0">
         <img src="../assets/img/madame-tussauds-chaplin/03-48_child.jpg" alt="A child doing the Chaplin walk in the installation" loading="lazy">
       </figure>
       <div class="slide-text">
-        <h2 class="slide-heading"><span class="underline-sweep">Social sharing</span></h2>
+        <h2 class="slide-heading">Social sharing</h2>
         <p>Every scene is recorded and can be shared by e-mail or on Facebook afterwards.</p>
         <p>On average around 900 videos are shared every week, and every shared video is watched about three times.</p>
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1276/718">
+      <figure class="slide-media" style="aspect-ratio: 1276/718; margin: 0">
         <img src="../assets/img/madame-tussauds-chaplin/04-48_movie.jpg" alt="Still from a recorded visitor video with Charlie Chaplin" loading="lazy">
       </figure>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 2400/1350">
+      <figure class="slide-media" style="aspect-ratio: 2400/1350; margin: 0">
         <img src="../assets/img/madame-tussauds-chaplin/05-screenshots_total.png" alt="Collage of recorded visitor videos" loading="lazy">
       </figure>
       <div class="slide-text">
-        <h2 class="slide-heading"><span class="underline-sweep">1 million videos recorded!</span></h2>
+        <h2 class="slide-heading">1 million videos recorded!</h2>
         <p>The counter passed 1,051,143 recorded videos in early 2019 &mdash; and around 25% of those videos are shared.</p>
       </div>
     </section>
@@ -99,13 +105,16 @@
 
     <nav class="project-nav" aria-label="More work">
       <a class="prev" href="../take-control-of-the-tower/"><small>Previous</small><span class="arrow">&larr;</span> Take Control of the Tower</a>
-      <a class="all" href="../.">All work</a>
       <a class="next" href="../gouda-vuurvast-virtual-reality/"><small>Next</small>Gouda vuurvast <span class="arrow">&rarr;</span></a>
+      <a class="all" href="../.">All work</a>
     </nav>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> digital creative &mdash; <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a></p>
+    <div class="footer-inner">
+      <span>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> Digital Creative</span>
+      <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a>
+    </div>
   </footer>
 </body>
 </html>

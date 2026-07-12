@@ -20,7 +20,6 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <a class="nav-link" href="../.">Work</a>
     <a class="logo-link" href="../." aria-label="Tim Koppers — home">
       <svg class="logo" viewBox="0 0 118 110" role="img" aria-label="koppers tim.">
   <g class="logo-sparkle" aria-hidden="true">
@@ -32,16 +31,23 @@
   <path class="logo-underline" d="M39 82h31" stroke="#fee500" stroke-width="3.4" stroke-linecap="round"/>
 </svg>
     </a>
-    <a class="nav-link" href="../hello/">Hello</a>
+    <nav aria-label="Main">
+      <a class="nav-link" href="../." data-label="Work"><span class="nav-label">Work</span></a>
+      <a class="nav-link" href="../hello/" data-label="Hello"><span class="nav-label">Hello</span></a>
+    </nav>
   </header>
 
   <main id="main">
     <article>
-      <header class="page-header reveal in-view">
-        <h1 class="page-title">Gouda vuurvast | virtual reality</h1>
+      <header class="page-header swiss-grid-pattern reveal in-view">
+        <div>
+          <h1 class="page-title">Gouda vuurvast<br>virtual reality</h1>
+        </div>
+        <div class="header-side">
         <p class="page-year">2017</p>
-        <div class="page-intro">
-        <p>Gouda Vuurvast builds waste incineration plants. Visiting one is impossible &mdash; unless you are waste. Thanks to VR you can now experience what a plant looks like on the inside and how it works.</p>
+          <div class="page-intro">
+          <p>Gouda Vuurvast builds waste incineration plants. Visiting one is impossible &mdash; unless you are waste. Thanks to VR you can now experience what a plant looks like on the inside and how it works.</p>
+          </div>
         </div>
       </header>
 
@@ -57,35 +63,35 @@
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1900/900">
+      <figure class="slide-media" style="aspect-ratio: 1900/900; margin: 0">
         <img src="../assets/img/gouda-vuurvast-virtual-reality/01-vuurvast_01.jpg" alt="VR view inside the virtual waste incineration plant" loading="lazy">
       </figure>
       <div class="slide-text">
-        <h2 class="slide-heading"><span class="underline-sweep">Explore the plant</span></h2>
+        <h2 class="slide-heading">Explore the plant</h2>
         <p>With the HTC&nbsp;Vive headset you can freely walk around the plant.</p>
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1900/900">
+      <figure class="slide-media" style="aspect-ratio: 1900/900; margin: 0">
         <img src="../assets/img/gouda-vuurvast-virtual-reality/02-vuurvast_02.jpg" alt="Virtual reality view of the incineration installation" loading="lazy">
       </figure>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1900/900">
+      <figure class="slide-media" style="aspect-ratio: 1900/900; margin: 0">
         <img src="../assets/img/gouda-vuurvast-virtual-reality/03-vuurvast_03.jpg" alt="Inside the VR plant, looking at the oven" loading="lazy">
       </figure>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1900/900">
+      <figure class="slide-media" style="aspect-ratio: 1900/900; margin: 0">
         <img src="../assets/img/gouda-vuurvast-virtual-reality/04-vuurvast_05.jpg" alt="Practicing bricklaying in VR with special fireproof bricks" loading="lazy">
       </figure>
       <div class="slide-text">
-        <h2 class="slide-heading"><span class="underline-sweep">Build a wall</span></h2>
+        <h2 class="slide-heading">Build a wall</h2>
         <p>Practice building with the company’s specially made fireproof bricks.</p>
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1900/900">
+      <figure class="slide-media" style="aspect-ratio: 1900/900; margin: 0">
         <img src="../assets/img/gouda-vuurvast-virtual-reality/05-vuurvast_04.jpg" alt="VR scene of the plant interior with heat glow" loading="lazy">
       </figure>
     </section>
@@ -94,13 +100,16 @@
 
     <nav class="project-nav" aria-label="More work">
       <a class="prev" href="../madame-tussauds-chaplin/"><small>Previous</small><span class="arrow">&larr;</span> Madame Tussauds</a>
-      <a class="all" href="../.">All work</a>
       <a class="next" href="../psv-100-year/"><small>Next</small>PSV 100 year <span class="arrow">&rarr;</span></a>
+      <a class="all" href="../.">All work</a>
     </nav>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> digital creative &mdash; <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a></p>
+    <div class="footer-inner">
+      <span>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> Digital Creative</span>
+      <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a>
+    </div>
   </footer>
 </body>
 </html>
