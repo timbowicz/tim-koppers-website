@@ -104,8 +104,8 @@
         var r = media.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width - 0.5;
         var y = (e.clientY - r.top) / r.height - 0.5;
-        media.style.setProperty('--tiltX', (y * -4).toFixed(2) + 'deg');
-        media.style.setProperty('--tiltY', (x * 5).toFixed(2) + 'deg');
+        media.style.setProperty('--tiltX', (y * -8).toFixed(2) + 'deg');
+        media.style.setProperty('--tiltY', (x * 10).toFixed(2) + 'deg');
       });
       link.addEventListener('mouseleave', function () {
         media.style.setProperty('--tiltX', '0deg');

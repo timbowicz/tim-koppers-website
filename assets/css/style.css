@@ -198,9 +198,10 @@ a { color: inherit; }
 .card-media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform .8s var(--ease-smooth);
+  transform: perspective(900px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg)) scale(var(--zoom, 1));
+  transition: transform .3s ease-out;
 }
-.card-link:hover .card-media img, .card-link:focus-visible .card-media img { transform: scale(1.04); }
+.card-link:hover .card-media img, .card-link:focus-visible .card-media img { --zoom: 1.12; }
 .card-title {
   position: absolute;
   top: 44px; left: 50%;
@@ -239,6 +240,13 @@ a { color: inherit; }
   font-weight: 700;
   line-height: 1.2;
   margin: 0 0 24px;
+}
+.page-year {
+  margin: -14px 0 22px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  color: #a0a0a0;
 }
 .page-intro p { margin: 0 0 1em; }
 .page-intro a { font-weight: 600; text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 3px; text-underline-offset: 3px; }
@@ -430,13 +438,13 @@ a { color: inherit; }
 }
 .cursor-blob::after {
   content: '';
-  position: absolute; inset: -7px;
+  position: absolute; inset: -5px;
   border-radius: 50%;
   border: 2px dashed var(--yellow);
   opacity: 0;
   transition: opacity .25s;
 }
-.cursor-blob.is-active { scale: 2.4; animation: blob-spin 6s linear infinite; }
+.cursor-blob.is-active { scale: 1.6; animation: blob-spin 6s linear infinite; }
 .cursor-blob.is-active::after { opacity: 1; animation: inherit; }
 @keyframes blob-spin { to { rotate: 360deg; } }
 .cursor-trail { opacity: .5; }
@@ -450,11 +458,8 @@ a { color: inherit; }
 }
 @media (hover: none), (pointer: coarse) { .cursor-blob, .cursor-trail, .cursor-spark { display: none; } }
 
-/* ---- Card tilt (JS sets --tiltX/--tiltY) ------------------------------------------- */
-.card-media {
-  transform: perspective(900px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
-  transition: transform .25s ease-out;
-}
+/* Card tilt: JS sets --tiltX/--tiltY on .card-media; only the image inside
+   tilts (with a zoom so no edges show) — the rounded frame itself stays straight. */
 
 /* ---- View transitions (cross-document, progressive enhancement) --------------------- */
 @view-transition { navigation: auto; }
@@ -477,8 +482,8 @@ a { color: inherit; }
   .logo-underline { animation-duration: 1.4s; }
   .logo-sparkle, .logo-link:hover .logo,
   .card-link:hover .card-title, .site-footer:hover .footer-spark { animation: none !important; }
-  .card-media { transform: none !important; }
-  .card-link:hover .card-media img, .video-facade:hover img { transform: none; }
+  .card-media img { transform: none !important; }
+  .video-facade:hover img { transform: none; }
   .button-pill:hover { transform: none; }
   .project-nav .arrow { transition: none; }
   .cursor-blob, .cursor-trail, .cursor-spark { display: none; }
