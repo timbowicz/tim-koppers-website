@@ -327,30 +327,34 @@ a { color: inherit; }
 }
 .page-title {
   margin: 0;
-  max-width: 16ch;
   font-size: clamp(32px, 5.6vw, 76px);
   font-weight: 700;
   line-height: 1.04;
   letter-spacing: -.005em;
   text-transform: uppercase;
   text-wrap: balance;
+  /* very long single words (Luchtverkeersleiding) may not fit the column;
+     JS shrinks the font to fit, this is the no-JS safety net */
+  overflow-wrap: break-word;
 }
 .page-year {
   margin: 18px 0 0;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: .18em;
+  letter-spacing: .12em;
   text-transform: uppercase;
 }
 .page-year::before {
   content: '';
   display: inline-block;
-  width: 11px; height: 11px;
-  margin-right: 10px;
+  width: 13px; height: 13px;
+  margin-right: 12px;
   background: var(--yellow);
-  outline: 2px solid var(--ink);
-  outline-offset: -2px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  vertical-align: -1px;
 }
+.page-year .marker { padding: .1em .4em; }
 .page-intro { max-width: 62ch; margin: 22px 0 0; font-size: 16.5px; font-weight: 450; }
 .page-intro p { margin: 0 0 1em; }
 .page-intro p:last-child { margin-bottom: 0; }

@@ -10,6 +10,27 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+  /* ---- Fit long project titles to their column ------------------------ */
+  var pageTitle = document.querySelector('.page-title');
+  if (pageTitle) {
+    var fitTitle = function () {
+      /* measure with word-breaking off, otherwise break-word hides the overflow
+         and the title wraps mid-word instead of shrinking */
+      pageTitle.style.fontSize = '';
+      pageTitle.style.overflowWrap = 'normal';
+      var fs = parseFloat(getComputedStyle(pageTitle).fontSize);
+      var guard = 0;
+      while (pageTitle.scrollWidth > pageTitle.clientWidth && fs > 26 && guard++ < 50) {
+        fs -= 2;
+        pageTitle.style.fontSize = fs + 'px';
+      }
+      pageTitle.style.overflowWrap = '';
+    };
+    fitTitle();
+    window.addEventListener('resize', fitTitle);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitle);
+  }
+
   /* ---- Scroll reveal + marker ink ---------------------------------- */
   var revealables = document.querySelectorAll('.reveal, .ink-on-scroll');
   if ('IntersectionObserver' in window) {
