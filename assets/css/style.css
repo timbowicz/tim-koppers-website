@@ -217,6 +217,18 @@ a { color: inherit; }
   max-width: calc(100% - 32px);
 }
 .card-title .marker { transition-delay: .15s; }
+.card-year {
+  position: absolute;
+  top: 84px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: var(--ink);
+}
+.card-year .marker { transition-delay: .35s; }
+@media (max-width: 640px) { .card-year { top: auto; bottom: 14px; } }
 .card-link:hover .card-title { animation: label-pop .45s var(--ease-pop); }
 @keyframes label-pop {
   0% { transform: translateX(-50%) scale(1) rotate(0); }
@@ -426,7 +438,6 @@ a { color: inherit; }
   top: 0; left: 0;
   border-radius: 50%;
   background: var(--yellow);
-  mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 999;
   will-change: transform;
@@ -438,13 +449,13 @@ a { color: inherit; }
 }
 .cursor-blob::after {
   content: '';
-  position: absolute; inset: -5px;
+  position: absolute; inset: -3px;
   border-radius: 50%;
-  border: 2px dashed var(--yellow);
+  border: 1.5px dashed var(--yellow);
   opacity: 0;
   transition: opacity .25s;
 }
-.cursor-blob.is-active { scale: 1.6; animation: blob-spin 6s linear infinite; }
+.cursor-blob.is-active { scale: 1.2; animation: blob-spin 6s linear infinite; }
 .cursor-blob.is-active::after { opacity: 1; animation: inherit; }
 @keyframes blob-spin { to { rotate: 360deg; } }
 .cursor-trail { opacity: .5; }

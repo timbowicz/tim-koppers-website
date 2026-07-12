@@ -50,7 +50,7 @@
 
     document.addEventListener('mousemove', function (e) {
       mx = e.clientX; my = e.clientY;
-      if (!visible) { blob.style.opacity = '0.9'; visible = true; }
+      if (!visible) { blob.style.opacity = '1'; visible = true; }
     });
     document.addEventListener('mouseleave', function () {
       blob.style.opacity = '0'; visible = false;
@@ -74,7 +74,10 @@
         var dist = 28 + Math.random() * 34;
         spark.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
         spark.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
-        spark.style.transform = 'translate(' + (e.clientX - 4) + 'px,' + (e.clientY - 4) + 'px)';
+        /* position via left/top, NOT transform — the scale animation would
+           shrink a transform-translate and pull sparks toward the viewport origin */
+        spark.style.left = (e.clientX - 4) + 'px';
+        spark.style.top = (e.clientY - 4) + 'px';
         document.body.appendChild(spark);
         spark.addEventListener('animationend', spark.remove.bind(spark));
       }
