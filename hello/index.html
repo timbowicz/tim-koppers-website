@@ -20,40 +20,48 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <a class="nav-link" href="../.">Work</a>
     <a class="logo-link" href="../." aria-label="Tim Koppers — home">
       <svg class="logo" viewBox="0 0 118 110" role="img" aria-label="koppers tim.">
   <g class="logo-sparkle" aria-hidden="true">
-    <path d="M103 7v16M95 15h16" stroke="#fee500" stroke-width="3.4" stroke-linecap="round"/>
+    <path d="M103 7v16M95 15h16" stroke="#ff3000" stroke-width="3.4" stroke-linecap="round"/>
   </g>
-  <circle cx="54" cy="58" r="47" fill="#141414"/>
+  <circle cx="54" cy="58" r="47" fill="#000000"/>
   <text x="54" y="55" class="logo-word">koppers</text>
   <text x="54" y="76" class="logo-word">tim.</text>
-  <path class="logo-underline" d="M39 82h31" stroke="#fee500" stroke-width="3.4" stroke-linecap="round"/>
+  <path class="logo-underline" d="M39 82h31" stroke="#ff3000" stroke-width="3.4" stroke-linecap="round"/>
 </svg>
     </a>
-    <a class="nav-link" href="../hello/" aria-current="page">Hello</a>
+    <nav aria-label="Main">
+      <a class="nav-link" href="../." data-label="Work"><span class="nav-label">Work</span></a>
+      <a class="nav-link" href="../hello/" data-label="Hello" aria-current="page"><span class="nav-label">Hello</span></a>
+    </nav>
   </header>
 
   <main id="main">
-    <h1 class="visually-hidden">Hello</h1>
-    <p class="statement reveal in-view ink-on-scroll">
-      <span class="hello-lines">Hi, <span class="marker">nice to meet you.</span></span>
-      <span class="hello-lines">Tim, digital creative.</span>
-      <span class="hello-lines">Since 2002.</span>
-    </p>
+    <section class="hello-wrap swiss-grid-pattern reveal in-view ink-on-scroll">
+      <span class="section-label">02 &mdash; Hello</span>
+      <h1 class="statement">
+        <span class="hello-lines">Hi, nice to</span>
+        <span class="hello-lines">meet you. Tim,</span>
+        <span class="hello-lines">digital creative.</span>
+        <span class="hello-lines accent">Since 2002.</span>
+      </h1>
+    </section>
 
-    <figure class="portrait reveal ink-on-scroll">
+    <figure class="portrait reveal ink-on-scroll" style="margin-left: auto; margin-right: auto">
       <img src="../assets/img/hello/IMG_3415.JPG" alt="Tim Koppers sitting on a rock in the mountains">
     </figure>
 
     <div class="contact-wrap reveal ink-on-scroll">
-      <a class="button-pill" href="mailto:hola@timkoppers.com">Contact me</a>
+      <a class="button-pill" href="mailto:hola@timkoppers.com">Contact me &rarr;</a>
     </div>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> digital creative &mdash; <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a></p>
+    <div class="footer-inner">
+      <span>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> Digital Creative</span>
+      <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a>
+    </div>
   </footer>
 </body>
 </html>

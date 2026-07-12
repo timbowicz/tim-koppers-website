@@ -20,28 +20,35 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <a class="nav-link" href="../.">Work</a>
     <a class="logo-link" href="../." aria-label="Tim Koppers — home">
       <svg class="logo" viewBox="0 0 118 110" role="img" aria-label="koppers tim.">
   <g class="logo-sparkle" aria-hidden="true">
-    <path d="M103 7v16M95 15h16" stroke="#fee500" stroke-width="3.4" stroke-linecap="round"/>
+    <path d="M103 7v16M95 15h16" stroke="#ff3000" stroke-width="3.4" stroke-linecap="round"/>
   </g>
-  <circle cx="54" cy="58" r="47" fill="#141414"/>
+  <circle cx="54" cy="58" r="47" fill="#000000"/>
   <text x="54" y="55" class="logo-word">koppers</text>
   <text x="54" y="76" class="logo-word">tim.</text>
-  <path class="logo-underline" d="M39 82h31" stroke="#fee500" stroke-width="3.4" stroke-linecap="round"/>
+  <path class="logo-underline" d="M39 82h31" stroke="#ff3000" stroke-width="3.4" stroke-linecap="round"/>
 </svg>
     </a>
-    <a class="nav-link" href="../hello/">Hello</a>
+    <nav aria-label="Main">
+      <a class="nav-link" href="../." data-label="Work"><span class="nav-label">Work</span></a>
+      <a class="nav-link" href="../hello/" data-label="Hello"><span class="nav-label">Hello</span></a>
+    </nav>
   </header>
 
   <main id="main">
     <article>
-      <header class="page-header reveal in-view">
-        <h1 class="page-title">PSV '100 year'</h1>
+      <header class="page-header swiss-grid-pattern reveal in-view">
+        <div>
+          <span class="section-label">Case 06 / 11</span>
+          <h1 class="page-title">PSV '100 year'</h1>
+        </div>
+        <div class="header-side">
         <p class="page-year">2013</p>
-        <div class="page-intro">
-        <p>20,000 people in the PSV stadium in Eindhoven installed our app to make the 100th anniversary of the club a show to never forget. Watch the result.</p>
+          <div class="page-intro">
+          <p>20,000 people in the PSV stadium in Eindhoven installed our app to make the 100th anniversary of the club a show to never forget. Watch the result.</p>
+          </div>
         </div>
       </header>
 
@@ -57,30 +64,30 @@
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1600/1200">
+      <figure class="slide-media" style="aspect-ratio: 1600/1200; margin: 0">
         <img src="../assets/img/psv-100-year/01-portfolio1.jpg" alt="Fans holding up their phones with flashing lights in the PSV stadium" loading="lazy">
       </figure>
       <div class="slide-text">
-        <h2 class="slide-heading"><span class="underline-sweep">Be part of the show</span></h2>
+        <h2 class="slide-heading">Be part of the show</h2>
         <p>To enhance the effects, you entered your section of the stadium in the app. When the flashlight part began, each section of the stadium flashed in its own rhythm.</p>
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1600/1063">
+      <figure class="slide-media" style="aspect-ratio: 1600/1063; margin: 0">
         <img src="../assets/img/psv-100-year/02-portfolio2.jpg" alt="The stadium lit up by thousands of phone flashlights" loading="lazy">
       </figure>
       <div class="slide-text">
-        <h2 class="slide-heading"><span class="underline-sweep">3... 2... 1... GO</span></h2>
+        <h2 class="slide-heading">3... 2... 1... GO</h2>
         <p>All phones were synced to a server clock, so the show started at exactly 11&nbsp;pm.</p>
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1600/1063">
+      <figure class="slide-media" style="aspect-ratio: 1600/1063; margin: 0">
         <img src="../assets/img/psv-100-year/03-portfolio3.jpg" alt="Light show effects across the stands" loading="lazy">
       </figure>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1600/1063">
+      <figure class="slide-media" style="aspect-ratio: 1600/1063; margin: 0">
         <img src="../assets/img/psv-100-year/04-portfolio4.jpg" alt="Fireworks and phone lights during the anniversary show" loading="lazy">
       </figure>
     </section>
@@ -89,13 +96,16 @@
 
     <nav class="project-nav" aria-label="More work">
       <a class="prev" href="../gouda-vuurvast-virtual-reality/"><small>Previous</small><span class="arrow">&larr;</span> Gouda vuurvast</a>
-      <a class="all" href="../.">All work</a>
       <a class="next" href="../extrema-outdoor-xo/"><small>Next</small>Extrema Outdoor XO <span class="arrow">&rarr;</span></a>
+      <a class="all" href="../.">All work</a>
     </nav>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> digital creative &mdash; <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a></p>
+    <div class="footer-inner">
+      <span>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> Digital Creative</span>
+      <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a>
+    </div>
   </footer>
 </body>
 </html>

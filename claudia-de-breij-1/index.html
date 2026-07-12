@@ -20,48 +20,55 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <a class="nav-link" href="../.">Work</a>
     <a class="logo-link" href="../." aria-label="Tim Koppers — home">
       <svg class="logo" viewBox="0 0 118 110" role="img" aria-label="koppers tim.">
   <g class="logo-sparkle" aria-hidden="true">
-    <path d="M103 7v16M95 15h16" stroke="#fee500" stroke-width="3.4" stroke-linecap="round"/>
+    <path d="M103 7v16M95 15h16" stroke="#ff3000" stroke-width="3.4" stroke-linecap="round"/>
   </g>
-  <circle cx="54" cy="58" r="47" fill="#141414"/>
+  <circle cx="54" cy="58" r="47" fill="#000000"/>
   <text x="54" y="55" class="logo-word">koppers</text>
   <text x="54" y="76" class="logo-word">tim.</text>
-  <path class="logo-underline" d="M39 82h31" stroke="#fee500" stroke-width="3.4" stroke-linecap="round"/>
+  <path class="logo-underline" d="M39 82h31" stroke="#ff3000" stroke-width="3.4" stroke-linecap="round"/>
 </svg>
     </a>
-    <a class="nav-link" href="../hello/">Hello</a>
+    <nav aria-label="Main">
+      <a class="nav-link" href="../." data-label="Work"><span class="nav-label">Work</span></a>
+      <a class="nav-link" href="../hello/" data-label="Hello"><span class="nav-label">Hello</span></a>
+    </nav>
   </header>
 
   <main id="main">
     <article>
-      <header class="page-header reveal in-view">
-        <h1 class="page-title">Claudia de Breij</h1>
+      <header class="page-header swiss-grid-pattern reveal in-view">
+        <div>
+          <span class="section-label">Case 10 / 11</span>
+          <h1 class="page-title">Claudia de Breij</h1>
+        </div>
+        <div class="header-side">
         <p class="page-year">2008</p>
-        <div class="page-intro">
-        <p>The theater show ‘iClaudia’ is about how busy we are meeting each other in digital space &mdash; an alter ego in Second Life, the hottest dates online, keeping up your social profiles&hellip; but what about the real world?</p>
+          <div class="page-intro">
+          <p>The theater show ‘iClaudia’ is about how busy we are meeting each other in digital space &mdash; an alter ego in Second Life, the hottest dates online, keeping up your social profiles&hellip; but what about the real world?</p>
+          </div>
         </div>
       </header>
 
       <div class="slides">
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 2037/2890" style="view-transition-name: p-claudia-de-breij-1">
+      <figure class="slide-media" style="aspect-ratio: 2037/2890; margin: 0" style="view-transition-name: p-claudia-de-breij-1">
         <img src="../assets/img/cards/claudia-de-b-claudia-1.jpg" alt="Poster of iClaudia: half human, half avatar portrait of Claudia de Breij">
       </figure>
       <div class="slide-text">
-        <h2 class="slide-heading"><span class="underline-sweep">Claudia Avatar</span></h2>
+        <h2 class="slide-heading">Claudia Avatar</h2>
         <p>The show is about being in the real world for just once, before we move to the digital world forever. For the poster we created a half human / half avatar Claudia.</p>
       </div>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1944/2592">
+      <figure class="slide-media" style="aspect-ratio: 1944/2592; margin: 0">
         <img src="../assets/img/claudia-de-breij-1/01-3561224897_7520088f39_o.jpg" alt="Claudia de Breij performing on stage" loading="lazy">
       </figure>
     </section>
     <section class="slide reveal ink-on-scroll">
-      <figure class="slide-media" style="aspect-ratio: 1319/1114">
+      <figure class="slide-media" style="aspect-ratio: 1319/1114; margin: 0">
         <img src="../assets/img/claudia-de-breij-1/02-bol_com_2.png" alt="The iClaudia DVD" loading="lazy">
       </figure>
     </section>
@@ -70,13 +77,16 @@
 
     <nav class="project-nav" aria-label="More work">
       <a class="prev" href="../racoon/"><small>Previous</small><span class="arrow">&larr;</span> Racoon</a>
-      <a class="all" href="../.">All work</a>
       <a class="next" href="../bruynzeel/"><small>Next</small>Bruynzeel <span class="arrow">&rarr;</span></a>
+      <a class="all" href="../.">All work</a>
     </nav>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> digital creative &mdash; <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a></p>
+    <div class="footer-inner">
+      <span>&copy; 2026 Tim Koppers <span class="footer-spark">&#10022;</span> Digital Creative</span>
+      <a href="mailto:hola@timkoppers.com">hola@timkoppers.com</a>
+    </div>
   </footer>
 </body>
 </html>
